@@ -6,13 +6,16 @@ import { fetchPlugin } from "./plugins/fetch-plugin";
 
 const App = () => {
   const ref = useRef<any>();
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState({
+    "message.js": 'module.exports = "Hello World!"',
+    "index.js": "",
+  });
   const [code, setCode] = useState("");
 
   const startService = async () => {
     ref.current = await esbuild.startService({
       worker: true,
-      wasmURL: "/esbuild.wasm",
+      wasmURL: "https://unpkg.com/esbuild-wasm@0.8.27/esbuild.wasm",
     });
   };
 
@@ -24,7 +27,7 @@ const App = () => {
     if (!ref.current) {
       return;
     }
-    console.log(ref.current);
+    //console.log(ref.current);
     const result = await ref.current.build({
       entryPoints: ["index.js"],
       bundle: true,
@@ -42,13 +45,14 @@ const App = () => {
 
     //console.log(result.);
     setCode(result.outputFiles[0].text);
+    eval(result.outputFiles[0].text);
   };
   return (
     <div>
       <textarea
-        value={input}
+        value={input["index.js"]}
         onChange={(e) => {
-          setInput(e.target.value);
+          setInput({ ...input, "index.js": e.target.value });
         }}
       ></textarea>
       <div>

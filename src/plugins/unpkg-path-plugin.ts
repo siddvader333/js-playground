@@ -8,6 +8,18 @@ export const unpkgPathPlugin = () => {
         return { path: "index.js", namespace: "a" };
       });
 
+      build.onResolve({ filter: /^\.\// }, async (args: any) => {
+        console.log("Found a ./ in required");
+        //check if local import from unpkg
+        if (!args.importer.includes("https://unpkg.com")) {
+          //Assume only import js files
+          return {
+            namespace: "a",
+            path: args.path.substring(2) + ".js",
+          };
+        }
+        return null;
+      });
       build.onResolve({ filter: /^\.+\// }, async (args: any) => {
         return {
           namespace: "a",
