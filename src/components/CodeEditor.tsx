@@ -1,11 +1,11 @@
-import MonacoEditor, { EditorDidMount, monaco } from "@monaco-editor/react";
-import parser from "prettier/parser-babel";
-import prettier from "prettier";
+import "./CodeEditor.css";
+import "./syntax.css";
 import { useRef } from "react";
+import MonacoEditor, { EditorDidMount } from "@monaco-editor/react";
+import prettier from "prettier";
+import parser from "prettier/parser-babel";
 import codeShift from "jscodeshift";
 import Highlighter from "monaco-jsx-highlighter";
-import "./syntax.css";
-import "./CodeEditor.css";
 
 interface CodeEditorProps {
   initialValue: string;
@@ -14,6 +14,7 @@ interface CodeEditorProps {
 
 const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
   const editorRef = useRef<any>();
+
   const onEditorDidMount: EditorDidMount = (getValue, monacoEditor) => {
     editorRef.current = monacoEditor;
     monacoEditor.onDidChangeModelContent(() => {
@@ -23,7 +24,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
     monacoEditor.getModel()?.updateOptions({ tabSize: 2 });
 
     const highlighter = new Highlighter(
-      //@ts-ignore
+      // @ts-ignore
       window.monaco,
       codeShift,
       monacoEditor
@@ -47,6 +48,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
         singleQuote: true,
       })
       .replace(/\n$/, "");
+
     editorRef.current.setValue(prettyCode);
   };
 
@@ -56,11 +58,14 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
         className="button button-format is-primary is-small"
         onClick={onFormatClick}
       >
-        format
+        Format
       </button>
       <MonacoEditor
         editorDidMount={onEditorDidMount}
         value={initialValue}
+        theme="vs-dark"
+        language="javascript"
+        height="100%"
         options={{
           wordWrap: "on",
           minimap: { enabled: false },
@@ -71,9 +76,6 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
           scrollBeyondLastLine: false,
           automaticLayout: true,
         }}
-        theme="dark"
-        language="javascript"
-        height="500px"
       />
     </div>
   );
