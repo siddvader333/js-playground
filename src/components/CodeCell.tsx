@@ -6,6 +6,7 @@ import { Cell } from "../redux/Cell";
 import { useActions } from "../hooks/useActions";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import "./CodeCell.css";
+import { useCumalitiveCode } from "../hooks/useCumulativeCode";
 
 export interface CodeCellProps {
   cell: Cell;
@@ -14,20 +15,21 @@ export interface CodeCellProps {
 const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
   const { updateCell, createBundle } = useActions();
   const bundle = useTypedSelector((state) => state.bundles![cell.id]);
+  const jointCode = useCumalitiveCode(cell.id);
 
   useEffect(() => {
     if (!bundle) {
-      createBundle(cell.id, cell.content);
+      createBundle(cell.id, jointCode);
     }
     const timer = setTimeout(async () => {
-      createBundle(cell.id, cell.content);
+      createBundle(cell.id, jointCode);
     }, 1500);
 
     return () => {
       clearTimeout(timer);
     };
     //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cell.content, cell.id, createBundle]);
+  }, [jointCode, cell.id, createBundle]);
 
   return (
     <ResizableContainer direction="vertical">
