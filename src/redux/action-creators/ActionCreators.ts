@@ -1,4 +1,3 @@
-import { type } from "os";
 import { ActionType } from "../action-types/ActionTypes";
 import {
   UpdateCellAction,
@@ -47,3 +46,5 @@ export const insertCellAfter = (
     },
   };
 };
+
+export * from "./ActionThunks";
