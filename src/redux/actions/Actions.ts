@@ -1,5 +1,5 @@
 import { ActionType } from "../action-types/ActionTypes";
-import { CellTypes, Direction } from "../Cell";
+import { CellTypes, Direction, FileTypes } from "../Cell";
 
 export interface MoveCellAction {
   type: ActionType.MOVE_CELL;
@@ -19,6 +19,8 @@ export interface InsertCellAfterAction {
   payload: {
     id: string | null;
     type: CellTypes;
+    fileName: string | null;
+    fileType: FileTypes | null;
   };
 }
 
@@ -30,6 +32,10 @@ export interface UpdateCellAction {
   };
 }
 
+export interface JSBundlePreProcessAction {
+  type: ActionType.JS_BUNDLE_PRE_PROCESS;
+  payload: {};
+}
 export interface BundleStartAction {
   type: ActionType.BUNDLE_START;
   payload: {
@@ -53,5 +59,6 @@ export type Action =
   | DeleteCellAction
   | InsertCellAfterAction
   | UpdateCellAction
+  | JSBundlePreProcessAction
   | BundleStartAction
   | BundleCompleteAction;

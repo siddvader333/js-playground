@@ -1,7 +1,7 @@
 import MDEditor from "@uiw/react-md-editor";
 import { useState, useEffect, useRef } from "react";
-import { useActions } from "../hooks/useActions";
-import { Cell } from "../redux/Cell";
+import { useActions } from "../../hooks/useActions";
+import { Cell } from "../../redux/Cell";
 import "./TextEditor.css";
 
 export interface TextEditorProps {
@@ -34,15 +34,15 @@ const TextEditor: React.FC<TextEditorProps> = ({ cell }) => {
   return (
     <div>
       {editing ? (
-        <div className="text-editor" ref={ref}>
+        <div className="text-editor card" ref={ref}>
           <MDEditor
             value={cell.content}
             onChange={(value) => updateCell(cell.id, value!)}
           />
         </div>
       ) : (
-        <div className="text-editor card" onClick={() => setEditing(true)}>
-          <div className="card-content">
+        <div className="text-editor card " onClick={() => setEditing(true)}>
+          <div className="card-content has-background-primary">
             <MDEditor.Markdown source={cell.content || "Click to edit"} />
           </div>
         </div>

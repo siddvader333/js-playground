@@ -1,18 +1,24 @@
 import "./CodeEditor.css";
-import "./syntax.css";
+import "../syntax.css";
 import { useRef } from "react";
 import MonacoEditor, { EditorDidMount } from "@monaco-editor/react";
 import prettier from "prettier";
 import parser from "prettier/parser-babel";
 import codeShift from "jscodeshift";
 import Highlighter from "monaco-jsx-highlighter";
+import { FileTypes } from "../../redux/Cell";
 
 interface CodeEditorProps {
   initialValue: string;
   onChange(value: string): void;
+  fileType: FileTypes | null;
 }
 
-const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
+const CodeEditor: React.FC<CodeEditorProps> = ({
+  onChange,
+  initialValue,
+  fileType,
+}) => {
   const editorRef = useRef<any>();
 
   const onEditorDidMount: EditorDidMount = (getValue, monacoEditor) => {
@@ -64,7 +70,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
         editorDidMount={onEditorDidMount}
         value={initialValue}
         theme="vs-dark"
-        language="javascript"
+        language={fileType === ".css" ? "css" : "javascript"}
         height="100%"
         options={{
           wordWrap: "on",

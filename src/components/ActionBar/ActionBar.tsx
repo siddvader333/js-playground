@@ -1,4 +1,4 @@
-import { useActions } from "../hooks/useActions";
+import { useActions } from "../../hooks/useActions";
 import "./ActionBar.css";
 
 export interface ActionBarProps {

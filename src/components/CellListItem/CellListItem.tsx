@@ -1,8 +1,8 @@
 import "./CellListItem.css";
-import { Cell } from "../redux/Cell";
-import ActionBar from "./ActionBar";
-import CodeCell from "./CodeCell";
-import TextEditor from "./TextEditor";
+import { Cell } from "../../redux/Cell";
+import ActionBar from "../ActionBar/ActionBar";
+import CodeCell from "../CodeCell/CodeCell";
+import TextEditor from "../TextEditor/TextEditor";
 
 export interface CellListItemProps {
   cell: Cell;

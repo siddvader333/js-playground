@@ -1,7 +1,7 @@
 import React from "react";
-import { useTypedSelector } from "../hooks/useTypedSelector";
-import AddCellBar from "./AddCellBar";
-import CellListItem from "./CellListItem";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import AddCellBar from "../AddCellBar/AddCellBar";
+import CellListItem from "../CellListItem/CellListItem";
 import "./CellList.css";
 
 const CellList: React.FC = () => {

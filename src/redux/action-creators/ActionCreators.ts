@@ -5,7 +5,7 @@ import {
   MoveCellAction,
   InsertCellAfterAction,
 } from "../actions/Actions";
-import { CellTypes, Direction } from "../Cell";
+import { CellTypes, Direction, FileTypes } from "../Cell";
 
 export const updateCell = (id: string, content: string): UpdateCellAction => {
   return {
@@ -36,14 +36,25 @@ export const moveCell = (id: string, direction: Direction): MoveCellAction => {
 
 export const insertCellAfter = (
   id: string | null,
-  cellType: CellTypes
+  cellType: CellTypes,
+  fileName: string | null,
+  fileType: FileTypes | null
 ): InsertCellAfterAction => {
   return {
     type: ActionType.INSERT_CELL_AFTER,
     payload: {
       id,
       type: cellType,
+      fileName: fileName,
+      fileType: fileType,
     },
+  };
+};
+
+export const jsBundlePreProcess = () => {
+  return {
+    type: ActionType.JS_BUNDLE_PRE_PROCESS,
+    payload: {},
   };
 };
 

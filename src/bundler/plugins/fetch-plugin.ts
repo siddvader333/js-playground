@@ -2,20 +2,75 @@
 import axios from "axios";
 import * as esbuild from "esbuild-wasm";
 import localForage from "localforage";
+import { Cell } from "../../redux/Cell";
+
+const showFunction = `
+//import _React from 'react';
+//import _ReactDOM from 'react-dom';
+var show = (value) =>{
+  const root = document.querySelector("#root");
+  if(typeof value === 'object'){
+    if(value.$$typeof && value.props){
+      ReactDOM.render(value, root);
+    }else{         
+      root.innerHTML = JSON.stringify(value);
+    }
+  }else {
+    root.innerHTML = value;
+  }
+}`;
 
 const fileCache = localForage.createInstance({
   name: "fileCache",
 });
 
-export const fetchPlugin = (inputObject: any) => {
+export const fetchPlugin = (inputObject: any, fileToRun: string) => {
   return {
     name: "fetch-plugin",
     setup(build: esbuild.PluginBuild) {
-      build.onLoad({ filter: /(^index\.js$)/ }, async (args: any) => {
-        return {
-          loader: "jsx",
-          contents: inputObject["index.js"],
-        };
+      build.onLoad({ filter: /(^[^.][^/].*\.js)$/ }, async (args: any) => {
+        //console.log("ON LOAD");
+        //console.log("found a .js file without ./ or ../", args.path);
+        //console.log(args);
+
+        for (const [key, value] of Object.entries(inputObject)) {
+          if ((value as Cell).fileName === args.path) {
+            //console.log("found a file with matching path name");
+            return {
+              loader: "jsx",
+              contents: (value as Cell).content,
+            };
+          }
+        }
+      });
+
+      build.onLoad({ filter: /(^[^.][^/].*\.css)$/ }, async (args: any) => {
+        //console.log("ON LOAD");
+        //console.log(
+        //  "found a .css starting with no ./ and no ../  ending with css"
+        //);
+        for (const [key, value] of Object.entries(inputObject)) {
+          if ((value as Cell).fileName === args.path) {
+            //console.log("found a file with matching path name");
+            //console.log((value as Cell).content);
+            const data = (value as Cell).content;
+            const escapedCss = data
+              .replace(/\n/g, "")
+              .replace(/""/g, '\\"')
+              .replace(/'/g, "\\'");
+            const contents = `
+              const style = document.createElement('style');
+              style.innerText = \`${escapedCss}\`;
+              document.head.appendChild(style);
+              `;
+
+            const result: esbuild.OnLoadResult = {
+              loader: "jsx",
+              contents: contents,
+            };
+            return result;
+          }
+        }
       });
 
       build.onLoad({ filter: /.*/ }, async (args: any) => {
@@ -52,7 +107,7 @@ export const fetchPlugin = (inputObject: any) => {
       });
 
       build.onLoad({ filter: /.*/ }, async (args: any) => {
-        console.log("onLoad", args);
+        //console.log("onLoad", args);
         if (args.path.includes("https://unpkg.com")) {
           //get package from unpkg if that is the requested path
           const { data, request } = await axios.get(args.path);
@@ -66,9 +121,9 @@ export const fetchPlugin = (inputObject: any) => {
           return result;
         } else {
           /*Look for a "local" file*/
-          console.log("look for a local file");
-          console.log(args.path);
-          console.log(inputObject[args.path]);
+          //console.log("look for a local file");
+          //console.log(args.path);
+          //console.log(inputObject[args.path]);
           return {
             loader: "jsx",
             contents: inputObject[args.path],
