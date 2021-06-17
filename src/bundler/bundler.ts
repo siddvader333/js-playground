@@ -38,7 +38,6 @@ const bundle = async (rawCode: { [key: string]: Cell }, fileToRun: string) => {
     for (let cell of Object.values(processedCode)) {
       console.log(cell.type, cell.fileType);
       if (cell.type === "code" && cell.fileType === ".js") {
-        console.log("found a file to append to", cell.fileName);
         const newCode = [showFunction, cell.content].join("\n");
         cell.content = newCode;
       }
@@ -48,7 +47,7 @@ const bundle = async (rawCode: { [key: string]: Cell }, fileToRun: string) => {
       entryPoints: [fileToRun],
       bundle: true,
       write: false,
-      plugins: [unpkgPathPlugin(), fetchPlugin(processedCode, fileToRun)],
+      plugins: [unpkgPathPlugin(), fetchPlugin(processedCode)],
       define: {
         "process.env.NODE_ENV": '"production"',
         global: "window",
@@ -56,8 +55,6 @@ const bundle = async (rawCode: { [key: string]: Cell }, fileToRun: string) => {
       //jsxFactory: "_React.createElement",
       //jsxFragment: "_React.Fragment",
     });
-    console.log("output for", fileToRun);
-    console.log(result.outputFiles[0].text);
     return { code: result.outputFiles[0].text, error: "" };
   } catch (error) {
     return {

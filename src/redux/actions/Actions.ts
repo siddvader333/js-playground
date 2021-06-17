@@ -32,10 +32,6 @@ export interface UpdateCellAction {
   };
 }
 
-export interface JSBundlePreProcessAction {
-  type: ActionType.JS_BUNDLE_PRE_PROCESS;
-  payload: {};
-}
 export interface BundleStartAction {
   type: ActionType.BUNDLE_START;
   payload: {
@@ -59,6 +55,5 @@ export type Action =
   | DeleteCellAction
   | InsertCellAfterAction
   | UpdateCellAction
-  | JSBundlePreProcessAction
   | BundleStartAction
   | BundleCompleteAction;

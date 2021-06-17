@@ -51,11 +51,4 @@ export const insertCellAfter = (
   };
 };
 
-export const jsBundlePreProcess = () => {
-  return {
-    type: ActionType.JS_BUNDLE_PRE_PROCESS,
-    payload: {},
-  };
-};
-
 export * from "./ActionThunks";

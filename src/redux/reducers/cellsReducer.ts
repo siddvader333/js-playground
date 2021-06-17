@@ -4,22 +4,6 @@ import { Action } from "../actions/Actions";
 import { Cell } from "../Cell";
 import { v4 as uuidv4 } from "uuid";
 
-const showFunction = `
-//import _React from 'react';
-//import _ReactDOM from 'react-dom';
-var show = (value) =>{
-  const root = document.querySelector("#root");
-  if(typeof value === 'object'){
-    if(value.$$typeof && value.props){
-      ReactDOM.render(value, root);
-    }else{         
-      root.innerHTML = JSON.stringify(value);
-    }
-  }else {
-    root.innerHTML = value;
-  }
-}`;
-
 export interface CellsState {
   loading: boolean;
   error: string | null;
@@ -82,18 +66,6 @@ const cellsReducer = produce(
         }
         return state;
 
-      case ActionType.JS_BUNDLE_PRE_PROCESS:
-        /*Go to every js code cell and append show function */
-        console.log("pre-processing");
-        for (let cell of Object.values(state.data)) {
-          console.log(cell.type, cell.fileType);
-          if (cell.type === "code" && cell.fileType === ".js") {
-            console.log("found a file to append to", cell.fileName);
-            const newCode = [showFunction, cell.content].join("\n");
-            cell.content = newCode;
-          }
-        }
-        return state;
       default:
         return state;
     }
