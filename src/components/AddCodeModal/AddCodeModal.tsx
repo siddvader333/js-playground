@@ -26,62 +26,70 @@ const AddCodeModal: React.FC<AddCodeModalProps> = ({
         }}
       ></div>
 
-      {/*Header*/}
-      <div className="modal-card">
-        <header className="modal-card-head">
-          <div className="modal-card-title has-text-right is-size-4">
-            Create New Code Cell
-          </div>
-        </header>
+      <div className="columns modal-content-container is-vcentered is-mobile">
+        <div className="column is-4-fullhd is-4-desktop is-2-tablet is-1-mobile "></div>
 
-        {/*Body*/}
-        <section className="modal-card-body">
-          <div className="columns is-vcentered">
-            <div className="column is-5" />
-            <div className="column is-5">
-              <input
-                onChange={(e) => setFileName(e.target.value)}
-                className="input"
-                type="text"
-                placeholder="FileName"
-              />
-            </div>
-            <div className="column is-2">
-              <div className="select">
-                <select onChange={(e) => setFileExtension(e.target.value)}>
-                  <option>.js</option>
-                  <option>.css</option>
-                </select>
+        <div className="column is-4-fullhd is-4-desktop is-8-tablet is-10-mobile">
+          <div className="card">
+            <div className="card-content">
+              <div className="columns is-vcentered is-centered">
+                <div className="column has-text-centered is-full">
+                  <p className="modal-title subtitle-is-5 is-light">
+                    New Code Cell
+                  </p>
+                </div>
+              </div>
+              <div className="columns is-mobile is-centered is-gapless">
+                <div className="column is-8">
+                  <input
+                    onChange={(e) => setFileName(e.target.value)}
+                    className="input is-light"
+                    type="text"
+                    placeholder="FileName"
+                  />
+                </div>
+                <div className="column is-4">
+                  <div className="select is-light">
+                    <select onChange={(e) => setFileExtension(e.target.value)}>
+                      <option>.js</option>
+                      <option>.css</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div className="columns is-vcentered has-text-centered is-mobile ">
+                <div className="column is-full">
+                  <div className="field buttons is-centered">
+                    <button
+                      onClick={() => {
+                        insertCellAfter(
+                          previousCellId,
+                          "code",
+                          fileName + fileExtension,
+                          fileExtension as FileTypes
+                        );
+                        closeModal();
+                      }}
+                      className="button is-primary is-small is-light"
+                    >
+                      Save changes
+                    </button>
+                    <button
+                      onClick={() => {
+                        closeModal();
+                      }}
+                      className="button is-small is-light"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
 
-        {/*Footer*/}
-        <footer className="buttons is-right modal-card-foot">
-          <button
-            onClick={() => {
-              insertCellAfter(
-                previousCellId,
-                "code",
-                fileName + fileExtension,
-                fileExtension as FileTypes
-              );
-              closeModal();
-            }}
-            className="button is-primary"
-          >
-            Save changes
-          </button>
-          <button
-            onClick={() => {
-              closeModal();
-            }}
-            className="button"
-          >
-            Cancel
-          </button>
-        </footer>
+        <div className="column is-4-fullhd is-4-desktop is-2-tablet is-1-mobile "></div>
       </div>
     </div>
   );

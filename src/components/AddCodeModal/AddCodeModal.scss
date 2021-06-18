@@ -15,3 +15,12 @@ $modal-card-foot-border-top: 0;
 @import "../../../node_modules/bulma/sass/grid/columns.sass";
 @import "../../../node_modules/bulma/sass/form/_all.sass";
 @import "../../../node_modules/bulma/sass/helpers/typography.sass";
+@import "../../../node_modules/bulma/sass/components/card.sass";
+
+.red-border {
+  outline: solid 5px red;
+}
+.modal-content-container {
+  height: 100%;
+  width: 100%;
+}

@@ -1,7 +1,6 @@
 import "./CellListItem.css";
 import { Cell } from "../../redux/Cell";
 import ActionBar from "../ActionBar/ActionBar";
-import CodeCell from "../CodeCell/CodeCell";
 import TextEditor from "../TextEditor/TextEditor";
 import JSCodeCell from "../JsCodeCell/JsCodeCell";
 import CssCodeCell from "../CssCodeCell/CssCodeCell";
