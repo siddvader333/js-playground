@@ -1,6 +1,6 @@
 import "./CodeEditor.css";
 import "../syntax.css";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import MonacoEditor, { EditorDidMount } from "@monaco-editor/react";
 import prettier from "prettier";
 import parser from "prettier/parser-babel";
@@ -20,11 +20,21 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
   fileType,
 }) => {
   const editorRef = useRef<any>();
+  const [editorHeight, setEditorHeight] = useState(10 * 19);
 
   const onEditorDidMount: EditorDidMount = (getValue, monacoEditor) => {
     editorRef.current = monacoEditor;
     monacoEditor.onDidChangeModelContent(() => {
       onChange(getValue());
+      /*Resize editor height */
+      const numLines = editorRef.current.getModel().getLineCount();
+      if (numLines > 20) {
+        setEditorHeight(20 * 19);
+      } else if (numLines < 10) {
+        setEditorHeight(10 * 19);
+      } else {
+        setEditorHeight(numLines * 19);
+      }
     });
 
     monacoEditor.getModel()?.updateOptions({ tabSize: 2 });
@@ -61,7 +71,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
   return (
     <div className="editor-wrapper">
       <button
-        className="button button-format is-primary is-small"
+        className="button button-format is-white is-small"
         onClick={onFormatClick}
       >
         Format
@@ -71,7 +81,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
         value={initialValue}
         theme="vs-dark"
         language={fileType === ".css" ? "css" : "javascript"}
-        height="100%"
+        height={editorHeight + "px"}
         options={{
           wordWrap: "on",
           minimap: { enabled: false },

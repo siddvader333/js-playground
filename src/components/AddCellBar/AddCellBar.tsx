@@ -24,7 +24,7 @@ const AddCellBar: React.FC<AddCellBarProps> = ({
       <div className={`add-cell ${forceVisible && "force-visible"}`}>
         <div className="add-buttons">
           <button
-            className="button is-rounded is-primary is-small"
+            className="button is-primary is-light is-small"
             onClick={() => {
               setModalOpen(true);
             }}
@@ -35,7 +35,7 @@ const AddCellBar: React.FC<AddCellBarProps> = ({
             <span>Code</span>
           </button>
           <button
-            className="button is-rounded is-primary is-small"
+            className="button is-primary is-light is-small"
             onClick={() => insertCellAfter(previousCellId, "text", null, null)}
           >
             <span className="icon is-small">

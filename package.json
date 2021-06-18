@@ -39,7 +39,7 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "npm run css-build && react-scripts start",
+    "start": "react-scripts start",
     "start-css": "npm run css-build & npm run start",
     "dev": "concurrently \"npm run start\"  \"npm run css-watch\"" ,
     "build": "react-scripts build",

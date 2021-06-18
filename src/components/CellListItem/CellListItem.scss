@@ -1,5 +1,15 @@
+@charset "utf-8";
+
+@import "../../../node_modules/bulma/sass/utilities/_all.sass";
+@import "../../../node_modules/bulma/sass/base/_all.sass";
+@import "../../../node_modules/bulma/sass/components/card.sass";
+
 .cell-list-item {
-  position: relative;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 1vh;
+  margin-bottom: 0.5vh;
 }
 
 .action-bar-wrapper {

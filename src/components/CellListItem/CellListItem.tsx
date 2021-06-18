@@ -3,6 +3,7 @@ import { Cell } from "../../redux/Cell";
 import ActionBar from "../ActionBar/ActionBar";
 import CodeCell from "../CodeCell/CodeCell";
 import TextEditor from "../TextEditor/TextEditor";
+import JSCodeCell from "../JsCodeCell/JsCodeCell";
 
 export interface CellListItemProps {
   cell: Cell;
@@ -12,12 +13,12 @@ export interface CellListItemProps {
 const CellListItem: React.FC<CellListItemProps> = ({ cell }) => {
   let child: JSX.Element =
     cell.type === "code" ? (
-      <>
-        <div className="action-bar-wrapper">
+      <div className="card">
+        <div className="card-content">
           <ActionBar cellId={cell.id} />
+          <JSCodeCell cell={cell} />
         </div>
-        <CodeCell cell={cell} />
-      </>
+      </div>
     ) : (
       <>
         <TextEditor cell={cell} />

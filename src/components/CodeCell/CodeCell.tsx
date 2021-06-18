@@ -57,8 +57,8 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
                 </div>
               ) : (
                 <Preview
-                  errorMessage={bundle!.error}
-                  bundledCode={bundle!.code}
+                  errorMessage={bundle.error}
+                  bundledCode={bundle.code}
                 />
               )}
             </div>
