@@ -13,12 +13,12 @@ const ActionBar: React.FC<ActionBarProps> = ({ cellId }) => {
     (state) => state.cells!.data[cellId].fileName
   );
   return (
-    <div className="action-bar columns is-vcentered">
-      <div className="column is-4 is-4-mobile">
+    <div className="action-bar columns is-vcentered is-mobile">
+      <div className="column is-4">
         <p className="subtitle is-6">{fileName}</p>
       </div>
-      <div className="column is-4 is-4-fullhd is-4-desktop is-1-tablet is-1-mobile"></div>
-      <div className="column is-4 is-7-mobile">
+      <div className="column is-4-fullhd is-4-desktop is-1-tablet is-1-mobile"></div>
+      <div className="column is-4-fullhd is-4-desktop is-7-tablet is-7-mobile">
         <div className="icon-group field buttons is-right">
           <IconButton
             styleClasses="is-primary is-light is-small"
