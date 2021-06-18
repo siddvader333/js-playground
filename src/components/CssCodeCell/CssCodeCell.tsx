@@ -3,14 +3,12 @@ import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { Cell } from "../../redux/Cell";
 import CodeEditor from "../CodeEditor/CodeEditor";
-import Preview from "../Preview/Preview";
-//import "./JSCodeCell.css";
+//import "./CssCodeCell.css";
 
-export interface JsCodeCellProps {
+export interface CssCodeCellProps {
   cell: Cell;
 }
-
-const JSCodeCell: React.FC<JsCodeCellProps> = ({ cell }) => {
+const CssCodeCell: React.FC<CssCodeCellProps> = ({ cell }) => {
   const { updateCell, createBundle } = useActions();
   const rawCode = useTypedSelector((state) => state.cells!.data);
   const bundle = useTypedSelector((state) => state.bundles![cell.id]);
@@ -31,21 +29,15 @@ const JSCodeCell: React.FC<JsCodeCellProps> = ({ cell }) => {
 
   return (
     <div className="columns">
-      <div className="column is-7">
+      <div className="column is-full">
         <CodeEditor
           initialValue={cell.content}
           onChange={(value) => updateCell(cell.id, value)}
           fileType={cell.fileType}
         />
       </div>
-      <div className="column">
-        <Preview
-          errorMessage={!bundle ? "" : bundle.error}
-          bundledCode={!bundle ? "" : bundle.code}
-        />
-      </div>
     </div>
   );
 };
 
-export default JSCodeCell;
+export default CssCodeCell;

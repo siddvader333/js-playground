@@ -1,23 +1,18 @@
 export interface IconButtonProps {
   iconName: string;
-  onClick: () => any;
-  extraClasses?: string;
+  styleClasses: string;
+  onClick?: () => any;
 }
 
 const IconButton: React.FC<IconButtonProps> = ({
   iconName,
-  extraClasses,
+  styleClasses,
   onClick,
 }) => {
   return (
-    <button
-      className={`button is-primary is-light is-small ${
-        extraClasses ? extraClasses : ""
-      }`}
-      onClick={onClick}
-    >
+    <button className={`button ${styleClasses}`} onClick={onClick}>
       <span className="icon">
-        <i className={`fas ${iconName}`} />
+        <i className={`${iconName}`} />
       </span>
     </button>
   );

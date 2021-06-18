@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+$white: #ffffff;
+$modal-background: #2d2d30;
+$modal-foreground: #3e3e42;
+
+$modal-card-head-background-color: $modal-foreground;
+$modal-card-body-background-color: $modal-background;
+$modal-card-title-color: $white;
+$modal-card-head-border-bottom: 0;
+$modal-card-foot-border-top: 0;
+@import "../../../node_modules/bulma/sass/utilities/_all.sass";
+@import "../../../node_modules/bulma/sass/base/_all.sass";
+@import "../../../node_modules/bulma/sass/components/modal.sass";
+@import "../../../node_modules/bulma/sass/grid/columns.sass";
+@import "../../../node_modules/bulma/sass/form/_all.sass";
+@import "../../../node_modules/bulma/sass/helpers/typography.sass";

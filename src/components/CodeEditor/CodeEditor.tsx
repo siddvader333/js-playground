@@ -3,7 +3,8 @@ import "../syntax.css";
 import { useRef, useState } from "react";
 import MonacoEditor, { EditorDidMount } from "@monaco-editor/react";
 import prettier from "prettier";
-import parser from "prettier/parser-babel";
+import JSparser from "prettier/parser-babel";
+import CSSParser from "prettier/parser-postcss";
 import codeShift from "jscodeshift";
 import Highlighter from "monaco-jsx-highlighter";
 import { FileTypes } from "../../redux/Cell";
@@ -57,8 +58,8 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
 
     const prettyCode = prettier
       .format(rawCode, {
-        parser: "babel",
-        plugins: [parser],
+        parser: fileType === ".css" ? "css" : "babel",
+        plugins: [fileType === ".css" ? CSSParser : JSparser],
         useTabs: false,
         semi: true,
         singleQuote: true,
@@ -88,7 +89,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
           showUnused: false,
           folding: false,
           lineNumbersMinChars: 3,
-          fontSize: 16,
+          fontSize: 13,
           scrollBeyondLastLine: false,
           automaticLayout: true,
         }}

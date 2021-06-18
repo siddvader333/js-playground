@@ -13,22 +13,28 @@ const ActionBar: React.FC<ActionBarProps> = ({ cellId }) => {
     (state) => state.cells!.data[cellId].fileName
   );
   return (
-    <div className="action-bar columns">
+    <div className="action-bar columns is-vcentered">
       <div className="column is-4 is-4-mobile">
-        <p className="subtitle is-5">{fileName}</p>
+        <p className="subtitle is-6">{fileName}</p>
       </div>
       <div className="column is-4 is-4-fullhd is-4-desktop is-1-tablet is-1-mobile"></div>
       <div className="column is-4 is-7-mobile">
         <div className="icon-group field buttons is-right">
           <IconButton
-            iconName="fa-arrow-up"
+            styleClasses="is-primary is-light is-small"
+            iconName="fas fa-arrow-up"
             onClick={() => moveCell(cellId, "up")}
           />
           <IconButton
-            iconName="fa-arrow-down"
+            styleClasses="is-primary is-light is-small"
+            iconName="fas fa-arrow-down"
             onClick={() => moveCell(cellId, "down")}
           />
-          <IconButton iconName="fa-times" onClick={() => deleteCell(cellId)} />
+          <IconButton
+            styleClasses="is-primary is-light is-small"
+            iconName="fas fa-times"
+            onClick={() => deleteCell(cellId)}
+          />
         </div>
       </div>
     </div>

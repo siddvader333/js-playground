@@ -4,6 +4,7 @@ import ActionBar from "../ActionBar/ActionBar";
 import CodeCell from "../CodeCell/CodeCell";
 import TextEditor from "../TextEditor/TextEditor";
 import JSCodeCell from "../JsCodeCell/JsCodeCell";
+import CssCodeCell from "../CssCodeCell/CssCodeCell";
 
 export interface CellListItemProps {
   cell: Cell;
@@ -16,14 +17,20 @@ const CellListItem: React.FC<CellListItemProps> = ({ cell }) => {
       <div className="card">
         <div className="card-content">
           <ActionBar cellId={cell.id} />
-          <JSCodeCell cell={cell} />
+          {cell.fileType === ".js" ? (
+            <JSCodeCell cell={cell} />
+          ) : (
+            <CssCodeCell cell={cell} />
+          )}
         </div>
       </div>
     ) : (
-      <>
-        <TextEditor cell={cell} />
-        <ActionBar cellId={cell.id} />
-      </>
+      <div className="card">
+        <div className="card-content">
+          <ActionBar cellId={cell.id} />
+          <TextEditor cell={cell} />
+        </div>
+      </div>
     );
   return <div className="cell-list-item">{child}</div>;
 };

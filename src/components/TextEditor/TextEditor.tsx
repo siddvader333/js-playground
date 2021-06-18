@@ -32,19 +32,17 @@ const TextEditor: React.FC<TextEditorProps> = ({ cell }) => {
   }, []);
 
   return (
-    <div>
+    <div className="columns">
       {editing ? (
-        <div className="text-editor card" ref={ref}>
+        <div className="column is-full" ref={ref}>
           <MDEditor
             value={cell.content}
             onChange={(value) => updateCell(cell.id, value!)}
           />
         </div>
       ) : (
-        <div className="text-editor card " onClick={() => setEditing(true)}>
-          <div className="card-content has-background-primary">
-            <MDEditor.Markdown source={cell.content || "Click to edit"} />
-          </div>
+        <div className="column is-full" onClick={() => setEditing(true)}>
+          <MDEditor.Markdown source={cell.content || "Click to edit"} />
         </div>
       )}
     </div>

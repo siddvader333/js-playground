@@ -5,10 +5,12 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import CellList from "./components/CellList/CellList";
 import { store } from "./redux";
+import Navbar from "./components/Navbar/Navbar";
 
 const App = () => {
   return (
     <Provider store={store}>
+      <Navbar />
       <div>
         <CellList />
       </div>
