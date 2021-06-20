@@ -6,6 +6,7 @@ import vanillaJSCodeExample from "../../assets/images/vanillaJSCodeExample.png";
 import cssCodeExample from "../../assets/images/cssCodeExample.png";
 import IconButton from "../../components/IconButton/IconButton";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const ImageList = [vanillaJSCodeExample, JSXCodeExample, cssCodeExample];
 const ImageTitleList = ["Vanilla JS Support", "JSX Support", "CSS Support"];
@@ -43,9 +44,12 @@ const Home: React.FC = () => {
                 </p>
                 <br />
                 <div className="field buttons">
-                  <button className="button is-rounded is-normal is-white is-light ">
-                    Create New Playground
-                  </button>
+                  <Link to="/playgroundId=123">
+                    <button className="button is-rounded is-normal is-white is-light ">
+                      Create New Playground
+                    </button>
+                  </Link>
+
                 </div>
               </div>
             </div>

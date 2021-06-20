@@ -54,19 +54,24 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
     );
   };
   const onFormatClick = () => {
-    const rawCode = editorRef.current.getModel().getValue();
+    try{
+      const rawCode = editorRef.current.getModel().getValue();
 
-    const prettyCode = prettier
-      .format(rawCode, {
-        parser: fileType === ".css" ? "css" : "babel",
-        plugins: [fileType === ".css" ? CSSParser : JSparser],
-        useTabs: false,
-        semi: true,
-        singleQuote: true,
-      })
-      .replace(/\n$/, "");
+      const prettyCode = prettier
+        .format(rawCode, {
+          parser: fileType === ".css" ? "css" : "babel",
+          plugins: [fileType === ".css" ? CSSParser : JSparser],
+          useTabs: false,
+          semi: true,
+          singleQuote: true,
+        })
+        .replace(/\n$/, "");
 
-    editorRef.current.setValue(prettyCode);
+      editorRef.current.setValue(prettyCode);
+    }catch(error){
+      console.log("Formatting error");
+      console.log(error.message);
+    } 
   };
 
   return (
