@@ -25,11 +25,11 @@ const Home: React.FC = () => {
   return (
     <>
       <Particles className="particles" params={particlesParams} />
-      <div className="home-container columns is-vcentered is-mobile is-multiline">
-        <div className="column is-12-mobile is-12-tablet is-12-desktop is-6-fullhd">
-          <div className="columns is-vcentered is-mobile">
+      <div className="columns is-vcentered is-mobile is-multiline">
+        <div className="column is-12-mobile is-12-tablet is-12-desktop is-12-fullhd">
+          <div className="home-container columns is-vcentered is-mobile">
             <div className="column is-2-mobile is-2-tablet is-2-desktop is-2-fullhd"></div>
-            <div className="home-card card column is-8-mobile is-8-tablet is-6-desktop is-8-fullhd">
+            <div className="home-card card column is-8-mobile is-8-tablet is-7-desktop is-8-fullhd">
               <div className="card-content">
                 <p className="subtitle has-text-weight-light is-5">
                   Welcome to
@@ -49,13 +49,13 @@ const Home: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="column is-2-mobile is-2-tablet is-4-desktop is-2-fullhd"></div>
+            <div className="column is-2-mobile is-2-tablet is-3-desktop is-2-fullhd"></div>
           </div>
         </div>
 
-        <div className="column is-12-mobile is-12-tablet is-12-desktop is-6-fullhd">
+        <div className="column is-12-mobile is-12-tablet is-12-desktop is-12-fullhd">
           <div className="columns is-vcentered is-mobile">
-            <div className="column has-text-right is-1-mobile is-1-tablet is-2-desktop is-2-fullhd">
+            <div className="column has-text-right is-1-mobile is-1-tablet is-3-desktop is-3-fullhd">
               <IconButton
                 styleClasses="is-primary is-light is-small"
                 iconName="fas fa-chevron-left"
@@ -67,7 +67,7 @@ const Home: React.FC = () => {
               />
             </div>
 
-            <div className="home-card card column is-10-mobile is-10-tablet is-8-desktop is-8-fullhd">
+            <div className="home-card card column has-text-centered is-10-mobile is-10-tablet is-6-desktop is-6-fullhd">
               <div className="card-content">
                 <p className="title is-4  has-text-weight-light is-spaced">
                   {ImageTitleList[carouselIndex]}
@@ -76,7 +76,7 @@ const Home: React.FC = () => {
               </div>
             </div>
 
-            <div className="column has-text-left is-1-mobile is-1-tablet is-2-desktop is-2-fullhd">
+            <div className="column has-text-left is-1-mobile is-1-tablet is-3-desktop is-3-fullhd">
               <IconButton
                 styleClasses="is-primary is-light is-small"
                 iconName="fas fa-chevron-right"

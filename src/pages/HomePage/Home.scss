@@ -13,26 +13,27 @@ $primary: $blue;
 @import "../../../node_modules/bulma/sass/elements/button.sass";
 
 .particles {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
 }
 
 .home-container {
-  margin-top: calc(15% - 1vh);
+	margin-top: 8vh !important;
+	height: 80vh;
 }
 
 .card {
-  border-radius: 20px !important;
+	border-radius: 20px !important;
 }
 
 .code-example {
-  border-radius: 15px;
+	border-radius: 15px;
 }
 
 .home-card {
-  margin-bottom: 5vh;
+	margin-bottom: 5vh;
 }
