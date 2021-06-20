@@ -1177,9 +1177,6 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
 .hero.is-fullheight-with-navbar {
   min-height: calc(100vh - 3.25rem); }
 
-.nav-logo {
-  margin-left: 5%; }
-
 .nav-buttons-div {
   margin-right: 2.5%; }
 
@@ -1197,7 +1194,7 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
   margin-bottom: 2.5vh; }
 
 .navbar-logo {
-  padding-left: 5%; }
+  padding-left: 5% !important; }
 
 .navbar-logo:hover {
   cursor: pointer; }

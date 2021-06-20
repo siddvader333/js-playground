@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+$blue: #007acd;
+
+$primary: $blue;
+
+// Import only what you need from Bulma
+@import "../../../node_modules/bulma/sass/utilities/_all.sass";
+@import "../../../node_modules/bulma/sass/base/_all.sass";
+@import "../../../node_modules/bulma/sass/grid/columns.sass";
+@import "../../../node_modules/bulma/sass/helpers/typography.sass";
+@import "../../../node_modules/bulma/sass/components/card.sass";
+@import "../../../node_modules/bulma/sass/elements/button.sass";
+
+.particles {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.home-container {
+  margin-top: calc(15% - 1vh);
+}
+
+.card {
+  border-radius: 20px !important;
+}
+
+.code-example {
+  border-radius: 15px;
+}
+
+.home-card {
+  margin-bottom: 5vh;
+}

@@ -66,10 +66,9 @@ table {
 td,
 th {
   padding: 0; }
-
-td:not([align]),
-th:not([align]) {
-  text-align: inherit; }
+  td:not([align]),
+  th:not([align]) {
+    text-align: inherit; }
 
 html {
   background-color: white;
@@ -115,12 +114,10 @@ a {
   color: #3273dc;
   cursor: pointer;
   text-decoration: none; }
-
-a strong {
-  color: currentColor; }
-
-a:hover {
-  color: #363636; }
+  a strong {
+    color: currentColor; }
+  a:hover {
+    color: #363636; }
 
 code {
   background-color: whitesmoke;
@@ -167,20 +164,18 @@ pre {
   padding: 1.25rem 1.5rem;
   white-space: pre;
   word-wrap: normal; }
-
-pre code {
-  background-color: transparent;
-  color: currentColor;
-  font-size: 1em;
-  padding: 0; }
+  pre code {
+    background-color: transparent;
+    color: currentColor;
+    font-size: 1em;
+    padding: 0; }
 
 table td,
 table th {
   vertical-align: top; }
-
-table td:not([align]),
-table th:not([align]) {
-  text-align: inherit; }
+  table td:not([align]),
+  table th:not([align]) {
+    text-align: inherit; }
 
 table th {
   color: #363636; }
@@ -220,9 +215,8 @@ table th {
   flex-grow: 1;
   font-weight: 700;
   padding: 0.75rem 1rem; }
-
-.card-header-title.is-centered {
-  justify-content: center; }
+  .card-header-title.is-centered {
+    justify-content: center; }
 
 .card-header-icon {
   align-items: center;
@@ -234,14 +228,12 @@ table th {
 .card-image {
   display: block;
   position: relative; }
-
-.card-image:first-child img {
-  border-top-left-radius: 0.25rem;
-  border-top-right-radius: 0.25rem; }
-
-.card-image:last-child img {
-  border-bottom-left-radius: 0.25rem;
-  border-bottom-right-radius: 0.25rem; }
+  .card-image:first-child img {
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem; }
+  .card-image:last-child img {
+    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem; }
 
 .card-content {
   background-color: transparent;
@@ -261,9 +253,8 @@ table th {
   flex-shrink: 0;
   justify-content: center;
   padding: 0.75rem; }
-
-.card-footer-item:not(:last-child) {
-  border-right: 1px solid #ededed; }
+  .card-footer-item:not(:last-child) {
+    border-right: 1px solid #ededed; }
 
 .card .media:not(:last-child) {
   margin-bottom: 1.5rem; }
